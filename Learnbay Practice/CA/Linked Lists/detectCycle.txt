@@ -1,0 +1,22 @@
+int detectCycle(struct node* node)
+{
+    struct node* sPtr=node;
+    struct node* fPtr=node;
+    if(node==NULL)
+    {
+        cout<<"empty list";
+        return -1;
+    }
+
+    while(fPtr!=NULL || fPtr->next!=NULL)
+    {
+        if(sPtr==fPtr)
+        {
+            return 1;
+        }
+        sPtr=sPtr->next;
+        fPtr=fPtr->next->next;
+    } 
+
+    return 0;
+}

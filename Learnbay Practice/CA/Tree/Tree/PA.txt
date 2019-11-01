@@ -1,0 +1,11 @@
+Note: These assignment include both practice question and class assignments
+Practice Assignment
+1. https://leetcode.com/problems/binary-tree-paths/description/
+2. https://leetcode.com/problems/sum-of-left-leaves/description/
+3. http://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+4. https://leetcode.com/problems/sum-root-to-leaf-numbers/
+5. https://leetcode.com/problems/find-mode-in-binary-search-tree/description/
+6. https://www.hackerrank.com/challenges/swap-nodes-algo/problem
+7. https://practice.geeksforgeeks.org/problems/diagonal-traversal-of-
+binary-tree/1
+8. https://practice.geeksforgeeks.org/problems/merge-two-bst-s/1

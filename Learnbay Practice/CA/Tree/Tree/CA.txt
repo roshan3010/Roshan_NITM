@@ -1,0 +1,20 @@
+1. iterative way to traverse the tree all three forms
+2. Deletion of node in BT
+3. Which form helps you to achive serailization and deearilization of tree
+4. Code for finding the level of a given node in given tree using level order traversal
+
+5. Code for vertical sum
+6. diameter
+    a. stack trace
+    b. code for no of edges
+    c. improved(better complexity) code for the same approach
+
+
+--------------------------------------
+6. Boundary Traversal
+7. ZigZag traversal
+8. Print all the paths in a binary tree
+
+
+9. Given sorted DLL convert it into BST.
+10. delete a node in BST

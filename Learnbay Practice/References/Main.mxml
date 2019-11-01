@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			[Bindable]
+			private var opsList:ArrayList = new ArrayList(["&", "|", "~", "^", "<<", ">>", ">>>"]);
+			
+			private function eval():void
+			{
+				num1Fld.enabled = ops.selectedItem != "~";
+				
+				var num1:int = parseInt(num1Fld.text);
+				var num2:int = parseInt(num2Fld.text);
+				var ans:int;
+				switch(ops.selectedItem as String)
+				{
+					case "&":
+						ans = num1 & num2;
+						break;
+					case "|":
+						ans = num1 | num2;
+						break;
+					case "~":
+						ans = ~num2;
+						break;
+					case "^":
+						ans = num1 ^ num2;
+						break;
+					case "<<":
+						ans = num1 << num2;
+						break;
+					case ">>":
+						ans = num1 >> num2;
+						break;
+					case ">>>":
+						ans = num1 >>> num2;
+						break;
+				}
+				numAnsFld.text = ans + "";
+				bin1.text = intToBin(num1);
+				bin2.text = intToBin(num2);
+				binAns.text = intToBin(ans);
+			}
+			
+			private function intToBin(num:int):String
+			{
+				var str:String = "";
+				
+				for (var k:int = 0; k < 32; ++k)
+					str = ((num>>>k)&1) + str;
+					
+				str = str.substr(0, 8) + " " + str.substr(8, 8) + " " + str.substr(16, 8) + " " +str.substr(24, 8);
+				return str;	
+			}
+		]]>
+	</fx:Script>
+
+	<mx:Grid horizontalCenter="0" verticalCenter="0">
+		<mx:GridRow>
+			<mx:GridItem horizontalAlign="center">
+				<s:Label text="Operator:" fontWeight="bold" />
+			</mx:GridItem>
+			<mx:GridItem horizontalAlign="center">
+				<s:Label text="Base 10 Values" fontWeight="bold"/>
+			</mx:GridItem>
+			<mx:GridItem horizontalAlign="center">
+				<s:Label text="Binary Values" fontWeight="bold"/>
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow >
+			<mx:GridItem/>
+			<mx:GridItem>
+				<s:TextInput id="num1Fld" maxChars="9" restrict="\-0-9" width="100" change="eval()" />
+			</mx:GridItem>
+			<mx:GridItem>
+				<s:Label id="bin1" explicitMinWidth="316" fontFamily="_typewriter" baselineShift="-6" fontSize="15"    />
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow >
+			<mx:GridItem>
+				<s:DropDownList id="ops" dataProvider="{opsList}" width="70" change="eval()" requireSelection="true" />
+			</mx:GridItem>
+			<mx:GridItem>
+				<s:TextInput id="num2Fld" maxChars="9" restrict="\-0-9"  width="100" change="eval()"/>
+			</mx:GridItem>
+			<mx:GridItem>
+				<s:Label id="bin2" fontFamily="_typewriter" baselineShift="-6" fontSize="15"   />
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow >
+			<mx:GridItem colSpan="3">
+				<s:HGroup width="100%" horizontalAlign="center" >
+					<s:Line width="100%" >
+						<s:stroke>
+							<s:SolidColorStroke color="0"/>
+						</s:stroke>
+					</s:Line>
+				</s:HGroup>	
+			</mx:GridItem>
+		</mx:GridRow>
+		<mx:GridRow >
+			<mx:GridItem>
+				<s:Label width="100%" textAlign="end" baselineShift="-6" text="=" fontWeight="bold" fontSize="17" />
+			</mx:GridItem>
+			<mx:GridItem>
+				<s:TextInput id ="numAnsFld"  width="100" editable="false"/>
+			</mx:GridItem>
+			<mx:GridItem>
+				<s:Label id = "binAns" fontFamily="_typewriter"  baselineShift="-6" fontSize="15"   />
+			</mx:GridItem>
+		</mx:GridRow>
+	</mx:Grid>
+
+</s:Application>

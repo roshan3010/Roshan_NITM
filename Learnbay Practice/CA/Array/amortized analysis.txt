@@ -1,0 +1,15 @@
+Amortized Analysis:
+        When one set of inputs changes the running time of the other set of inputs, we use amortize analysis. The motivation for amortized analysis is that taking worst-case run time on each operation
+        rather than on algorith is too pessimistic. Certain operations may be costly and others may not be as costly. Amortized analysis considers both costly and less costly operations together over the                 
+        whole series of operation of the algo.
+        
+        Amortized analysis can be done in three ways:
+
+        1. Aggregate analysis : This determines the upper bound T(n) on the total cost of sequence of n operations and then calculates the amortized cost to be T(n)/n.
+        
+        2. Accounting analysis : It is a type of aggregate analysis where to each operation it assigns an amortized cost which may differ from actual cost. Early operations have amortized cost higher than 
+           actual cost, which accumulates into "saved credit" which pays for the later operations having amortized cost lower than the actual cost.
+        
+        3. Potential method : It's a form of accounting analysis where saved credit is computed as a function of the state of the data structure. The amortized cost is the immediate cost plus the change in                 
+           potential.
+ 
