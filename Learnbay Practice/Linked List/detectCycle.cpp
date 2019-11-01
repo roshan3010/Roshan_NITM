@@ -38,7 +38,6 @@ int detectCycle(struct node* node)
         }
         sPtr=sPtr->next;
         fPtr=fPtr->next->next;
-        
     } 
 
 
