@@ -41,3 +41,21 @@ int main()
     replaceElement(Arr,n);
     return 0;
 }
+
+
+// T.C : O(N^2) S.C : O(N)
+// optimization
+void replaceElement(int Arr[], int n)
+{
+    int product=1;
+    for(int i=0; i<n; i++)
+        product=product*Arr[i];
+    
+    for(int i=0; i<n; i++)
+        Arr[i]=product/Arr[i];
+    
+    for(int i=0; i<n; i++)
+        cout<<Arr[i]<<" ";
+}
+
+// T.C : O(N) S.C : O(1)
