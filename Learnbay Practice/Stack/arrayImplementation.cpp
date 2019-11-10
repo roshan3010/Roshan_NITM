@@ -8,7 +8,7 @@ class Stack{
 
     public:
         int a[MAX];
-        Stack() {top=-1;}
+        Stack() {top=-1;}       // not having this step caused TLE error
         bool push(int x);
         int pop();
         int peek();
