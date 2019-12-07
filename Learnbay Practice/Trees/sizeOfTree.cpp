@@ -1,10 +1,7 @@
 /*
-*****************************
-Given a binary tree, find maximum element.
+ Given a binary tree, find the size of the tree i.e. count the number of nodes.
+ */
 
-
-*****************************
-*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -14,43 +11,20 @@ struct node{
     node* right;
 };
 
-int findMaxEle(struct node* node)                   // Recursive code
+int findSize(struct node* root)
 {
-    if(!node)
-    {
-        //cout<<"empty tree";
-        return -1;
-    }
+    if(!root)
+        return 0;
+    
+    return (1+findSize(root->left)+findSize(root->right));
 
-    int leftMax=findMaxEle(node->left);
-    int rightMax=findMaxEle(node->right);
-
-    return max(node->data,max(leftMax, rightMax));
-}
-
-int findMaxWithoutRecurr(struct node* root)         // Iterative code
-{
-    int max,max_val=INT_MIN;
-    stack<struct node*> st;
-    st.push(root);
-    while(!st.empty())
-    {
-        struct node* temp=st.top();
-        st.pop();
-        max=temp->data;
-        if(temp->left)
-            st.push(temp->left);
-        if(temp->right)
-            st.push(temp->right);
-        
-        if(max_val<max)
-            max_val=max;
-    }
-
-    return max_val;
 }
 
 
+
+//####################################################
+//Driver function
+//####################################################
 int main()
 {
     struct node* root;
@@ -95,8 +69,9 @@ int main()
     root->right->right->left=NULL;
     root->right->right->right=NULL;
 
-    cout<<findMaxEle(root);
-    cout<<"\n"<<findMaxWithoutRecurr(root);
+    //cout<<findMaxEle(root);
+    //cout<<"\n"<<findMaxWithoutRecurr(root);
+    cout<<findSize(root);
 }
 
 

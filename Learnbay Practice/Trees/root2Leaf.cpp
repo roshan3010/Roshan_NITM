@@ -1,53 +1,42 @@
 /*
-*****************************
-Given a binary tree, find maximum element.
 
+Write code to delete binary tree. delete all nodes from bottom to top.
 
-*****************************
 */
-#include<bits/stdc++.h>
+
+#include<bits10_1.h/stdc++.h>
 using namespace std;
 
 struct node{
-    int data;
-    node* left;
-    node* right;
+	int data;
+	struct node* left;
+	struct node* right;
 };
 
-int findMaxEle(struct node* node)                   // Recursive code
+
+void root2Leaf(struct node* root, int path[], int len)
 {
-    if(!node)
+    if(!root)
+        return;
+    
+    path[len]=root->data;
+    len++;
+    if(root->left==NULL and root->right==NULL )
     {
-        //cout<<"empty tree";
-        return -1;
+         printPath(path,len);
+         cout<<"\n";
+    }   
+    else{
+        root2Leaf(root->left, path, len);
+        root2Leaf(root->right, path, len);
     }
-
-    int leftMax=findMaxEle(node->left);
-    int rightMax=findMaxEle(node->right);
-
-    return max(node->data,max(leftMax, rightMax));
+    
 }
 
-int findMaxWithoutRecurr(struct node* root)         // Iterative code
+void printPath(int arr[], int len)
 {
-    int max,max_val=INT_MIN;
-    stack<struct node*> st;
-    st.push(root);
-    while(!st.empty())
-    {
-        struct node* temp=st.top();
-        st.pop();
-        max=temp->data;
-        if(temp->left)
-            st.push(temp->left);
-        if(temp->right)
-            st.push(temp->right);
-        
-        if(max_val<max)
-            max_val=max;
-    }
-
-    return max_val;
+    for(int i=0; i<len; i++)
+        cout<<arr[i]<<" ";
 }
 
 
@@ -94,9 +83,9 @@ int main()
 
     root->right->right->left=NULL;
     root->right->right->right=NULL;
+    
+    int path[INT_MAX];
+    root2Leaf(root, path, 0);
 
-    cout<<findMaxEle(root);
-    cout<<"\n"<<findMaxWithoutRecurr(root);
+    return 0;
 }
-
-

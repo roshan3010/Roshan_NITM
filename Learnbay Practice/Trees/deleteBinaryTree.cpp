@@ -1,53 +1,39 @@
 /*
-*****************************
-Given a binary tree, find maximum element.
 
+Write code to delete binary tree. delete all nodes from bottom to top.
 
-*****************************
 */
+
 #include<bits/stdc++.h>
 using namespace std;
 
 struct node{
-    int data;
-    node* left;
-    node* right;
+	int data;
+	struct node* left;
+	struct node* right;
 };
 
-int findMaxEle(struct node* node)                   // Recursive code
+
+void deleteBtree(struct node* root)
 {
-    if(!node)
-    {
-        //cout<<"empty tree";
-        return -1;
-    }
+    if(root==NULL)
+        return;
+    
+    deleteBtree(root->left);
+    deleteBtree(root->right);
 
-    int leftMax=findMaxEle(node->left);
-    int rightMax=findMaxEle(node->right);
-
-    return max(node->data,max(leftMax, rightMax));
+    free(root);
 }
 
-int findMaxWithoutRecurr(struct node* root)         // Iterative code
+void printBtree(struct node* root)
 {
-    int max,max_val=INT_MIN;
-    stack<struct node*> st;
-    st.push(root);
-    while(!st.empty())
-    {
-        struct node* temp=st.top();
-        st.pop();
-        max=temp->data;
-        if(temp->left)
-            st.push(temp->left);
-        if(temp->right)
-            st.push(temp->right);
-        
-        if(max_val<max)
-            max_val=max;
+    if(root==NULL)
+        return;
+    else{
+	    printBtree(root->left);
+	    cout<<root->data<<" ";
+	    printBtree(root->right);
     }
-
-    return max_val;
 }
 
 
@@ -94,9 +80,11 @@ int main()
 
     root->right->right->left=NULL;
     root->right->right->right=NULL;
+    cout<<"before deletion : ";
+    printBtree(root);
+    deleteBtree(root);
+    cout<<"\nafter deletion : ";
+    printBtree(root);
 
-    cout<<findMaxEle(root);
-    cout<<"\n"<<findMaxWithoutRecurr(root);
+    return 0;
 }
-
-

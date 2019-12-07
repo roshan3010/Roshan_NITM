@@ -1,10 +1,7 @@
 /*
-*****************************
-Given a binary tree, find maximum element.
+ Given a binary tree, find the size of the tree i.e. count the number of nodes.
+ */
 
-
-*****************************
-*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -14,43 +11,66 @@ struct node{
     node* right;
 };
 
-int findMaxEle(struct node* node)                   // Recursive code
+struct node* dollerNode()
 {
-    if(!node)
-    {
-        //cout<<"empty tree";
-        return -1;
-    }
+    struct node* newNode=new node();
+    newNode->data=0;
+    newNode->left=NULL;
+    newNode->right=NULL;
 
-    int leftMax=findMaxEle(node->left);
-    int rightMax=findMaxEle(node->right);
-
-    return max(node->data,max(leftMax, rightMax));
+    return newNode;
 }
 
-int findMaxWithoutRecurr(struct node* root)         // Iterative code
+void printLevel(struct node* root, int level)
 {
-    int max,max_val=INT_MIN;
-    stack<struct node*> st;
-    st.push(root);
-    while(!st.empty())
+    queue<struct node* > Q;
+    Q.push(root);
+    Q.push(dollerNode);
+    struct node* temp;
+    int i=1;
+    while(!Q.empty(Q))
     {
-        struct node* temp=st.top();
-        st.pop();
-        max=temp->data;
-        if(temp->left)
-            st.push(temp->left);
-        if(temp->right)
-            st.push(temp->right);
+        if(i>level)
+            break;
+        temp=Q.front();
+        Q.pop();
+        if(temp==dollerNode)
+        {
+            i++;
+            Q.push(dollerNode);
+        }
+
+        if(i==level)
+            cout<<temp->data<<" ";
         
-        if(max_val<max)
-            max_val=max;
-    }
+        if(temp->left)
+            Q.push(tmep->left);
+        
+        if(temp->right)
+            Q.push(tmep->right);
 
-    return max_val;
+        
+    }
+    delete(Q);
+}
+
+void levelOrderInReverse(struct node* root)
+{
+    int h=height(root);
+    for(int i=h; i>0; i--)
+    {
+        printLevel(root, i);
+        cout<<"\n";
+    }
 }
 
 
+
+
+
+//####################################################
+//Driver function
+//####################################################
 int main()
 {
     struct node* root;
@@ -95,8 +115,9 @@ int main()
     root->right->right->left=NULL;
     root->right->right->right=NULL;
 
-    cout<<findMaxEle(root);
-    cout<<"\n"<<findMaxWithoutRecurr(root);
+    //cout<<findMaxEle(root);
+    //cout<<"\n"<<findMaxWithoutRecurr(root);
+    cout<<printLevel(root, 2);
 }
 
 
