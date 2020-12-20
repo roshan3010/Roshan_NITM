@@ -17,11 +17,11 @@ def search_insert_position(list1,target):
         for i in range(len(list1)):
             if target<list1[i]:
                 return i
-            elif list1[i]<target<list1[i+1] and i+1<=len(list1):
+            elif list1[i]<target<list1[i] and i+1<=len(list1):
                 return i+1
             elif target>list1[i] and  i==len(list1)-1:
                 return i+1
 
-list1=[1,2,3,5,7,10]
-target=int(input("please enter the target : "))
-print(search_insert_position(list1,target))
+list1=[-2,1,2,3,5,7,10,43,45,54,60]
+#target=int(input("please enter the target : "))
+print(search_insert_position(list1,-3))
