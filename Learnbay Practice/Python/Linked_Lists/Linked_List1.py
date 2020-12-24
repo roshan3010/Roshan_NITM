@@ -32,4 +32,15 @@ n5.next=n6
 
 
 linked_list=Linked_list(n1)
-linked_list.my_print()
+#linked_list.my_print()
+#============================================
+
+def linked_list_mid_reverse(linked_list):
+    temp=linked_list.head
+    while(temp!=None):
+
+        print(temp.data)
+        temp=temp.next
+
+
+linked_list_mid_reverse(linked_list)
