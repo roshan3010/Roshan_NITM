@@ -21,6 +21,10 @@ class linked_list:
 
         print("NULL")
 
+    # def merge_K_sorted_list(self,LLA):
+
+
+
 n1=Node(1)
 n2=Node(2)
 n3=Node(3)
