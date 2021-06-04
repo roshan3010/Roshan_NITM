@@ -25,6 +25,7 @@ class linked_list:
 
 
 
+
 n1=Node(1)
 n2=Node(2)
 n3=Node(3)
